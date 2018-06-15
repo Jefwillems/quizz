@@ -54,7 +54,5 @@ module.exports = {
     ],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // enforce arrow function parentheses
-    'arrow-parens': ['error', 'always'],
   },
 };

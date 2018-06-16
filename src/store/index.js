@@ -10,6 +10,15 @@ export default new Vuex.Store({
   state: {
     count: 0,
     categories: [],
+    selected_category: { name: '', id: -1 },
+    difficulties: [
+      { name: '', id: 0 },
+      { name: 'easy', id: 1 },
+      { name: 'medium', id: 2 },
+      { name: 'hard', id: 3 },
+    ],
+    current_difficulty: { name: '', id: 0 },
+    questions: [],
   },
   mutations,
   getters,

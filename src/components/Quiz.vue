@@ -5,12 +5,10 @@
         {{ category.name }}
       </option>
     </select>
-    <select name="difficulties" id="difficulties" @change="update_difficulty">
+    <select id="difficulties" name="difficulties"  @change="update_difficulty">
       <option v-for="d in difficulties" :key="d.id" :value="d.id">{{ d.name }}</option>
     </select>
-    <p>{{ current_category }}</p>
-    <p>{{ current_difficulty }}</p>
-    <button @click="get_new_questions">get questions</button>
+    <button @click="get_new_questions">go to quiz</button>
   </div>
 </template>
 <script>
@@ -19,7 +17,9 @@ import types from '../store/types';
 
 export default {
   mounted() {
-    this.getCategories();
+    if (this.alphabeticalCategories.length === 0) {
+      this.getCategories();
+    }
   },
   computed: {
     ...mapState(['difficulties']),
@@ -36,7 +36,7 @@ export default {
       this.$store.commit(types.mutations.UPDATE_DIFFICULTY, event.target.value);
     },
     get_new_questions() {
-      this.$store.dispatch(types.actions.FETCH_QUESTIONS);
+      this.$router.push('/question');
     },
   },
 };

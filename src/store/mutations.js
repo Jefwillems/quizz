@@ -1,9 +1,10 @@
 export default {
   update_categories: (state, data) => {
-    if (data.findIndex(el => el.id === -1) === -1) {
-      data.push({ name: 'Any', id: -1 });
-    }
-    state.categories = data;
+    data.forEach((cat) => {
+      if (state.categories.findIndex(el => el.id === cat.id) === -1) {
+        state.categories.push({ label: cat.name, id: cat.id });
+      }
+    });
   },
   update_category: (state, data) => {
     state.selected_category = state.categories.find(el => el.id === +data);
@@ -25,10 +26,13 @@ export default {
     const q = state.questions.find(el => el.id === question.id);
     q.answered = true;
     q.correct = true;
+    state.score.correct += 1;
+    state.score.total += 1;
   },
   answer_incorrect: (state, question) => {
     const q = state.questions.find(el => el.id === question.id);
     q.answered = true;
     q.correct = false;
+    state.score.total += 1;
   },
 };

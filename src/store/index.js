@@ -8,17 +8,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    count: 0,
-    categories: [],
-    selected_category: { name: '', id: -1 },
+    categories: [{ label: 'Any Category', id: -1 }],
+    selected_category: { label: 'Any Category', id: -1 },
     difficulties: [
-      { name: 'any', id: -1 },
-      { name: 'easy', id: 1 },
-      { name: 'medium', id: 2 },
-      { name: 'hard', id: 3 },
+      { label: 'Any Difficulty', id: -1 },
+      { label: 'easy', id: 1 },
+      { label: 'medium', id: 2 },
+      { label: 'hard', id: 3 },
     ],
-    current_difficulty: { name: '', id: 0 },
+    current_difficulty: { label: 'Any Difficulty', id: -1 },
     questions: [],
+    score: { correct: 0, total: 0 },
   },
   mutations,
   getters,

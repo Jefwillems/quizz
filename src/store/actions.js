@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import types from './types';
 
 export default {
@@ -22,6 +23,7 @@ export default {
       .then((json) => {
         const questions = json.results ? json.results : [];
         commit(types.mutations.UPDATE_QUESTIONS, questions);
-      });
+      })
+      .catch(error => Vue.$log.debug(error));
   },
 };

@@ -4,11 +4,24 @@
         green:success,
         red:!success,
         }">Previous question</div>
+      <p v-html="scoreString"></p>
       <p v-html="not_answered_question.question"></p>
       <div v-if="not_answered_question.type === 'multiple'">
         <a v-for="q in shuffled_answers" :key="q" @click="answer(not_answered_question, q)">
           <div class="answer">
             <span v-html="q"></span>
+          </div>
+        </a>
+      </div>
+      <div v-if="not_answered_question.type === 'boolean'">
+        <a @click="answer(not_answered_question,'True')">
+          <div class="answer">
+            <span>True</span>
+          </div>
+        </a>
+        <a @click="answer(not_answered_question,'False')">
+          <div class="answer">
+            <span>False</span>
           </div>
         </a>
       </div>
@@ -29,10 +42,13 @@ export default {
   },
   computed: {
     ...mapState(['questions']),
-    ...mapGetters(['not_answered_question']),
+    ...mapGetters(['not_answered_question', 'score']),
     shuffled_answers() {
       return this.shuffleAnswers(this.not_answered_question.correct_answer,
         this.not_answered_question.incorrect_answers);
+    },
+    scoreString() {
+      return `${this.score.correct} / ${this.score.total}`;
     },
   },
   methods: {

@@ -1,14 +1,24 @@
 <template>
-  <div class="quiz">
-    <select id="cats" name="categories" @change="update_category">
-      <option v-for="category in alphabeticalCategories" :key="category.id" :value="category.id">
-        {{ category.name }}
-      </option>
-    </select>
-    <select id="difficulties" name="difficulties"  @change="update_difficulty">
-      <option v-for="d in difficulties" :key="d.id" :value="d.id">{{ d.name }}</option>
-    </select>
-    <button @click="get_new_questions">go to quiz</button>
+  <div class="fullscreen">
+    <div class="quiz">
+      <div class="element">
+        <v-select
+          @input="update_category"
+          :options="alphabeticalCategories"
+          :value="selected_category"
+        ></v-select>
+      </div>
+      <div class="element">
+        <v-select
+          @input="update_difficulty"
+          :options="difficulties"
+          :value="current_difficulty"
+        ></v-select>
+      </div>
+      <div class="element btn">
+         <button @click="get_new_questions">go to quiz</button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -17,23 +27,23 @@ import types from '../store/types';
 
 export default {
   mounted() {
-    if (this.alphabeticalCategories.length === 0) {
-      this.getCategories();
-    }
+    this.getCategories();
   },
   computed: {
-    ...mapState(['difficulties']),
-    ...mapGetters(['alphabeticalCategories', 'current_category', 'current_difficulty']),
+    ...mapState([]),
+    ...mapGetters(['alphabeticalCategories', 'difficulties', 'selected_category', 'current_difficulty']),
   },
   methods: {
     getCategories() {
       this.$store.dispatch(types.actions.FETCH_CATEGORIES);
     },
     update_category(event) {
-      this.$store.commit(types.mutations.UPDATE_CATEGORY, event.target.value);
+      this.$log.info('CAT');
+      this.$store.commit(types.mutations.UPDATE_CATEGORY, event.id);
     },
     update_difficulty(event) {
-      this.$store.commit(types.mutations.UPDATE_DIFFICULTY, event.target.value);
+      this.$log.info('DIFF');
+      this.$store.commit(types.mutations.UPDATE_DIFFICULTY, event.id);
     },
     get_new_questions() {
       this.$router.push('/question');
@@ -42,4 +52,32 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$dark: #35414a;
+$semilight: #86919a;
+$light: #cccccc;
+$blue: #5aafee;
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .quiz {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    .element {
+      display: flex;
+      flex-direction: row;
+      margin: 16px 0;
+      button {
+        width: 50%;
+      }
+      .v-select {
+        width: 100%;
+        color: $light;
+      }
+    }
+  }
+}
 </style>

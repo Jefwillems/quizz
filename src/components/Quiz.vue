@@ -16,7 +16,7 @@
         ></v-select>
       </div>
       <div class="element btn">
-         <button @click="get_new_questions">go to quiz</button>
+         <button @click="get_new_questions"><span>Start</span></button>
       </div>
     </div>
   </div>
@@ -38,11 +38,9 @@ export default {
       this.$store.dispatch(types.actions.FETCH_CATEGORIES);
     },
     update_category(event) {
-      this.$log.info('CAT');
       this.$store.commit(types.mutations.UPDATE_CATEGORY, event.id);
     },
     update_difficulty(event) {
-      this.$log.info('DIFF');
       this.$store.commit(types.mutations.UPDATE_DIFFICULTY, event.id);
     },
     get_new_questions() {
@@ -51,10 +49,11 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $dark: #35414a;
 $semilight: #86919a;
-$light: #cccccc;
+$light: #dddddd;
+$green: #4caf50;
 $blue: #5aafee;
 .fullscreen {
   width: 100vw;
@@ -70,14 +69,46 @@ $blue: #5aafee;
       display: flex;
       flex-direction: row;
       margin: 16px 0;
-      button {
-        width: 50%;
+      &.btn {
+        button {
+          width: 100%;
+          display: block;
+          padding: 0;
+
+          overflow: auto;
+
+          border-width: 0;
+          outline: 0;
+          border-radius: 2px;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+          background-color: $green;
+          color: $semilight;
+
+          transition: background-color 0.3s;
+          &:hover,
+          &:focus {
+            background-color: darken($color: $green, $amount: 10%);
+          }
+          span {
+            display: block;
+            padding: 9px 24px;
+            color: $light;
+            font-size: 1rem;
+          }
+        }
       }
       .v-select {
         width: 100%;
-        color: $light;
+        .dropdown-toggle {
+          border: 1px solid rgba(200, 200, 200, 1);
+        }
+        .selected-tag {
+          color: $light;
+        }
       }
     }
   }
 }
 </style>
+

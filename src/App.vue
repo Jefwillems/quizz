@@ -25,7 +25,7 @@ $blue: #5aafee;
 }
 body,
 html {
-  background: $dark;
+  background: $semilight;
   margin: 0;
   padding: 0;
 }

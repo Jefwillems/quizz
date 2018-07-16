@@ -35,4 +35,7 @@ export default {
     q.correct = false;
     state.score.total += 1;
   },
+  clear_questions: (state) => {
+    state.questions = [];
+  },
 };

@@ -1,28 +1,25 @@
 <template>
-  <div>
+  <div class="q_wrapper">
       <div v-bind:class="{
         green:success,
         red:!success,
         }">Previous question</div>
-      <p v-html="scoreString"></p>
-      <p v-html="not_answered_question.question"></p>
-      <div v-if="not_answered_question.type === 'multiple'">
-        <a v-for="q in shuffled_answers" :key="q" @click="answer(not_answered_question, q)">
-          <div class="answer">
+      <p class="score" v-html="scoreString"></p>
+      <p class="question" v-html="not_answered_question.question"></p>
+      <div class="answers" v-if="not_answered_question.type === 'multiple'">
+        <a class="answer"
+           v-for="q in shuffled_answers"
+           :key="q"
+           @click="answer(not_answered_question, q)">
             <span v-html="q"></span>
-          </div>
         </a>
       </div>
-      <div v-if="not_answered_question.type === 'boolean'">
-        <a @click="answer(not_answered_question,'True')">
-          <div class="answer">
+      <div class="answers" v-if="not_answered_question.type === 'boolean'">
+        <a class="answer" @click="answer(not_answered_question,'True')">
             <span>True</span>
-          </div>
         </a>
-        <a @click="answer(not_answered_question,'False')">
-          <div class="answer">
+        <a class="answer" @click="answer(not_answered_question,'False')">
             <span>False</span>
-          </div>
         </a>
       </div>
   </div>
@@ -81,6 +78,34 @@ export default {
 }
 .green {
   background-color: green;
+}
+.q_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  > * {
+    width: 80%;
+    margin: 0 auto 3rem;
+  }
+  .score {
+    text-align: center;
+  }
+  .question {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .answers {
+    display: flex;
+    flex-direction: row;
+    .answer {
+      border: 1px solid wheat;
+      padding: 10px;
+      width: 30%;
+      span {
+        font-size: 1.5rem;
+      }
+    }
+  }
 }
 </style>
 

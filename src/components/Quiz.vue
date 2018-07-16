@@ -44,6 +44,7 @@ export default {
       this.$store.commit(types.mutations.UPDATE_DIFFICULTY, event.id);
     },
     get_new_questions() {
+      this.$store.commit(types.mutations.CLEAR_QUESTIONS);
       this.$router.push('/question');
     },
   },

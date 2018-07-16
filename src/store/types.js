@@ -10,5 +10,6 @@ export default {
     UPDATE_QUESTIONS: 'update_questions',
     ANSWER_CORRECT: 'answer_correct',
     ANSWER_INCORRECT: 'answer_incorrect',
+    CLEAR_QUESTIONS: 'clear_questions',
   },
 };

@@ -15,9 +15,10 @@ export default {
     if (state.selected_category.id !== -1) {
       url += `&category=${state.selected_category.id}`;
     }
-    if (state.current_difficulty.name) {
-      url += `&difficulty=${state.current_difficulty.name}`;
+    if (state.current_difficulty.id !== -1) {
+      url += `&difficulty=${state.current_difficulty.label}`;
     }
+    Vue.$log.info(url);
     fetch(url)
       .then(data => data.json())
       .then((json) => {

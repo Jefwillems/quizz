@@ -97,10 +97,23 @@ export default {
   .answers {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
     .answer {
-      border: 1px solid wheat;
+      flex-basis: 40%;
+      text-align: center;
       padding: 10px;
       width: 30%;
+      margin: 1rem 0;
+
+      border: 2px solid #3e3e3e;
+      border-radius: 5px;
+
+      transition: background 0.15s ease-in;
+      &:hover {
+        background: #3e3e3e;
+      }
       span {
         font-size: 1.5rem;
       }

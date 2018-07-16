@@ -18,7 +18,6 @@ export default {
     if (state.current_difficulty.id !== -1) {
       url += `&difficulty=${state.current_difficulty.label}`;
     }
-    Vue.$log.info(url);
     fetch(url)
       .then(data => data.json())
       .then((json) => {

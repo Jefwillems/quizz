@@ -1,5 +1,9 @@
 import {
-  UPDATE_CATEGORIES, UPDATE_TOKEN, UPDATE_QUESTIONS, ANSWER_QUESTION,
+  UPDATE_CATEGORIES,
+  UPDATE_TOKEN,
+  UPDATE_QUESTIONS,
+  ANSWER_QUESTION,
+  CLEAR_HISTORY,
 } from './types';
 
 export default {
@@ -17,7 +21,7 @@ export default {
       const found = foundInQuestions || foundInAnsweredQuestions;
       return !found;
     });
-    if (!state.selected_question) state.selected_question = newQuestions.pop();
+    if (state.questions.length === 0) state.selected_question = newQuestions.pop();
     state.questions = [...state.questions, ...newQuestions];
   },
   [ANSWER_QUESTION](state, answer) {
@@ -25,5 +29,8 @@ export default {
     state.answered_questions = [...state.answered_questions, { ...answeredQuestion, answer }];
     const [q] = state.questions.splice(0, 1);
     state.selected_question = { ...q };
+  },
+  [CLEAR_HISTORY](state) {
+    state.answered_questions = [];
   },
 };

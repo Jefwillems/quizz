@@ -5,6 +5,7 @@ export const UPDATE_TOKEN = 'update_token';
 export const FETCH_QUESTIONS = 'fetch_questions';
 export const UPDATE_QUESTIONS = 'update_questions';
 export const ANSWER_QUESTION = 'answer_question';
+export const CLEAR_HISTORY = 'clear_history';
 export default {
   FETCH_CATEGORIES,
   UPDATE_CATEGORIES,
@@ -13,4 +14,5 @@ export default {
   FETCH_QUESTIONS,
   UPDATE_QUESTIONS,
   ANSWER_QUESTION,
+  CLEAR_HISTORY,
 };

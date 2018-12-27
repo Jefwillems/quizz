@@ -1,8 +1,8 @@
 <template lang="pug">
   v-card(dark color="secondary")
-    v-card-text(class="px-0" v-html="selected_question.question")
+    v-card-text(class="px-0 font-weight-bold headline" v-html="selected_question.question")
     v-card-text(class="px-0 pb-0 pt-4")
-      span {{questions_length}} questions remaining after this
+      span(class="") {{questions_length}} questions remaining after this
     v-card-text(class="px-0 py-0")
       v-btn(flat color="orange" @click="fetchMoreQuestions") get more
 </template>

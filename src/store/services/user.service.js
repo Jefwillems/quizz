@@ -30,7 +30,6 @@ class UserService extends Service {
         );
         return token;
       }
-      console.error({ responseCode });
       return null;
     }
     return data;

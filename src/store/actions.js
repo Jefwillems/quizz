@@ -22,8 +22,13 @@ export default {
   },
 
   async [FETCH_QUESTIONS]({ commit, state }) {
+    const cat = state.selected_difficulty.toLowerCase();
+    const options = {
+      category: state.selected_category > -1 ? state.selected_category : undefined,
+      difficulty: cat !== 'any' ? cat : undefined,
+    };
     const service = new QuizService(state.token);
-    const questions = await service.getTenQuestions();
+    const questions = await service.getTenQuestions(JSON.parse(JSON.stringify(options)));
     commit(UPDATE_QUESTIONS, questions);
   },
 };

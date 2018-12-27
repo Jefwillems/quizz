@@ -12,7 +12,7 @@ export default new Vuex.Store({
     categories: [],
     selected_category: -1,
     questions: [],
-    selected_question: '',
+    selected_question: {},
     answered_questions: [],
     difficulties: [
       { id: -1, name: 'Any' },

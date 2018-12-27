@@ -1,16 +1,25 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang='pug'>
+  v-app(dark)
+    v-content
+      v-container(fluid)
+        router-view
+    v-footer(app)
 </template>
+<script>
+import { FETCH_CATEGORIES, FETCH_TOKEN } from './store/types';
+
+export default {
+  mounted() {
+    this.$store.dispatch(FETCH_CATEGORIES);
+    this.$store.dispatch(FETCH_TOKEN);
+  },
+};
+</script>
+
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

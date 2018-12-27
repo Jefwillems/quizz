@@ -1,18 +1,22 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug" >
+  v-container(fluid grid-list-xl)
+    //- img(alt="Vue logo" src="../assets/trivialogo.png")
+    setting
+    v-layout(wrap align-center)
+      v-flex(xs12 d-flex)
+        v-btn(color="primary" @click="goToQuiz") GO
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import Setting from '@/components/Setting.vue';
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld,
+  name: 'Home',
+  components: { Setting },
+  methods: {
+    goToQuiz() {
+      this.$router.push({ name: 'quiz' });
+    },
   },
 };
 </script>

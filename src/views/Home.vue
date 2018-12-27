@@ -1,6 +1,6 @@
 <template lang="pug" >
   v-container(fluid grid-list-xl)
-    //- img(alt="Vue logo" src="../assets/trivialogo.png")
+    img(alt="Vue logo" src="../assets/trivialogo.png")
     setting
     v-layout(wrap align-center)
       v-flex(xs12 d-flex)
